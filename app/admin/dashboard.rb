@@ -3,31 +3,58 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    columns do
+      column do
+        panel 'Projects count' do
+          Project.count
+        end
+      end
+
+      column do
+        panel 'Users count' do
+          User.count
+        end
+      end
+
+      column do
+        panel 'Skills count' do
+          Skill.count
+        end
       end
     end
 
-    # Here is an example of a simple dashboard with columns and panels.
-    #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
+      column do
+        panel 'Current reservations' do
+          table do
+            ProjectUserReservation.current.each do |project_user_reservation|
+              tr do
+                td project_user_reservation.project_user.project.name
+                td project_user_reservation.project_user.user.name
+                td project_user_reservation.begin_date
+                td project_user_reservation.end_date                                                
+              end
+            end  
+          end            
+        end
+      end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+      columns do
+        column do
+          panel 'Active projects' do
+            table do
+              Project.active.each do |project|
+                tr do
+                  td project.name
+                  td project.begin_date
+                  td project.end_date                                                
+                end
+              end  
+            end            
+          end
+        end
+      end
+      
+    end
   end # content
 end
