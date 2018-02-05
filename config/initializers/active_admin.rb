@@ -124,7 +124,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  # config.comments = false
+  config.comments = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -143,7 +143,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
+  config.batch_actions = false
 
   # == Controller Filters
   #
@@ -189,7 +189,7 @@ ActiveAdmin.setup do |config|
   # Create another checkbox is disabled by default. You can customize it for individual
   # resources or you can enable them globally from here.
   #
-  # config.create_another = true
+  config.create_another = true
 
   # == Register Stylesheets & Javascripts
   #
@@ -273,7 +273,7 @@ ActiveAdmin.setup do |config|
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #
-  # config.filters = true
+  config.filters = true
   #
   # By default the filters include associations in a select, which means
   # that every record will be loaded for each association.
@@ -286,8 +286,8 @@ ActiveAdmin.setup do |config|
   #
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
-  #
-  # config.footer = 'my custom footer text'
+  
+  config.footer = 'HRPM - Human Resource and Project Manager'
 
   # == Sorting
   #

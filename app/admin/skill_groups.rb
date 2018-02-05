@@ -1,5 +1,9 @@
 ActiveAdmin.register SkillGroup do
-  menu parent: 'Skills'
+  menu parent: 'Misc'
   permit_params :name
-
+  index do
+    selectable_column
+    column :name
+    actions
+  end
 end
