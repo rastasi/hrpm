@@ -9,9 +9,9 @@
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
-@import "active_admin/base";
+//@import "active_admin/base";
+@import "arctic_admin/base";
 
-@import "active_admin_flat_skin";
 @import "font-awesome";
 
 // Overriding any non-variable SASS must be done after the fact.

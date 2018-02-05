@@ -2,6 +2,10 @@ ActiveAdmin.register User do
   menu parent: 'People'
   permit_params :email, :password, :password_confirmation
 
+  action_item :admin_user_user_skills, only: %i[show edit] do
+    link_to 'Skills', admin_user_user_skills_path(resource)
+  end
+
   index do
     selectable_column
     id_column
