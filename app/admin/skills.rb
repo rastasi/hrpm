@@ -1,4 +1,5 @@
 ActiveAdmin.register Skill do
+  menu priority: 5
   permit_params :name, :skill_group_id
 
   index do

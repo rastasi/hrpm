@@ -1,4 +1,5 @@
 ActiveAdmin.register Project do
+  menu priority: 3
   permit_params :name, :description, :begin_date, :end_date, :project_group_id, :active
 
   action_item :project_users, only: %i[show edit] do

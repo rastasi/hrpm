@@ -1,9 +1,17 @@
 <%= month_calendar do |date| %>
   <%= date.day %><br/>
-  <span class="reservations">
-    <%= reservations_to_date(date) %><br/>
-  </span>
-  <span class="reservations">  
-    <%= projects_to_date(date) %>
-  </span>
+  <div class="reservations">
+    <% reservations_to_date(date).each do |reservation| %>
+      <div class="reservation">
+        <%=reservation.project_user.user.name %>
+      </div>
+    <% end %>
+  </div>
+  <div class="projects">  
+    <% projects_to_date(date).each do |project| %>
+      <div class="project">
+        <%=project.name %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

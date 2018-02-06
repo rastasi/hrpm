@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  menu priority: 4
   permit_params :email, :password, :password_confirmation
 
   action_item :admin_user_user_skills, only: %i[show edit] do

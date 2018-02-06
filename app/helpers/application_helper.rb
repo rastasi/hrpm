@@ -1,10 +1,10 @@
 module ApplicationHelper
 
   def reservations_to_date(date)
-    ProjectUserReservation.on_day(date).map { |r| r.project_user.user.name }.join(', ')
+    ProjectUserReservation.on_day(date)
   end
 
   def projects_to_date(date)
-    Project.on_day(date).map {|p| p.name }.join(', ')
+    Project.on_day(date)
   end
 end

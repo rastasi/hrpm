@@ -25,7 +25,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel 'Current reservations' do
+        panel 'Reservated users' do
           table do
             ProjectUserReservation.current.each do |project_user_reservation|
               tr do
@@ -39,22 +39,30 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      columns do
-        column do
-          panel 'Active projects' do
-            table do
-              Project.active.each do |project|
-                tr do
-                  td project.name
-                  td project.begin_date
-                  td project.end_date                                                
-                end
-              end  
-            end            
-          end
+      column do
+        panel 'Free users' do
+          table do
+            User.free_today.each do |user|
+              tr do
+                td user.name                                                
+              end
+            end  
+          end            
         end
       end
-      
     end
+
+    panel 'Active projects' do
+      table do
+        Project.active.each do |project|
+          tr do
+            td project.name
+            td project.begin_date
+            td project.end_date                                                
+          end
+        end  
+      end            
+    end
+    
   end # content
 end
