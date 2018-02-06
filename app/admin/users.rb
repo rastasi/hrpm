@@ -5,6 +5,34 @@ ActiveAdmin.register User do
     link_to 'Skills', admin_user_user_skills_path(resource)
   end
 
+  show do
+    h3 user.name
+    panel "Details" do
+      attributes_table_for user do
+        row :email
+        row :last_sign_in_at
+        row :team
+      end
+    end
+    panel "Skills" do
+        table do
+          th do
+            td 'Name'
+            td 'Level'
+            td 'Group'
+          end
+          user.user_skills.each do |user_skill|
+            tr do
+              td
+              td user_skill.skill.name
+              td user_skill.level
+              td user_skill.skill.skill_group.name
+            end                
+          end
+        end
+    end
+  end
+
   index do
     selectable_column
     id_column
