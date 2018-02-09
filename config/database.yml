@@ -1,16 +1,11 @@
 default: &default
   adapter: mysql2
-  username: root
-  password: toor
+  username: c21_hrpm
+  password: bnx9w@NFFW
+  database: c21_hrpm
 
 development:
   <<: *default
-  database: hrpm_development
-
-test:
-  <<: *default
-  database: hrpm_test
 
 production:
   <<: *default
-  adapter: postgresql
