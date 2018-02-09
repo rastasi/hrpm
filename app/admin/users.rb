@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   menu priority: 4
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :first_name, :last_name, :team_id
 
   action_item :admin_user_user_skills, only: %i[show edit] do
     link_to 'Skills', admin_user_user_skills_path(resource)
@@ -50,9 +50,12 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
+      f.input :first_name
+      f.input :last_name
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :team
     end
     f.actions
   end
