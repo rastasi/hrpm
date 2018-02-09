@@ -13,4 +13,4 @@ test:
 
 production:
   <<: *default
-  database: hrpm_production
+  adapter: postgresql
