@@ -14,6 +14,7 @@ ActiveAdmin.register Project do
         row :description
         row :begin_date
         row :end_date
+        row :project_group
       end
     end
     panel "Users" do
@@ -38,6 +39,7 @@ ActiveAdmin.register Project do
     column :begin_date
     column :end_date
     column :active
+    column :project_group
     actions
   end
 end
