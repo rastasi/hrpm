@@ -1,6 +1,9 @@
 class Project < ApplicationRecord
   include OnDay
 
+  just_define_datetime_picker :begin_date
+  just_define_datetime_picker :end_date
+  
   belongs_to :project_group
   has_many :project_users
 

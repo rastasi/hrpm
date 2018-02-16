@@ -1,4 +1,9 @@
 //*= require simple_calendar
+@import "just_datetime_picker/base";
 @import "active_admin/mixins";
 @import "arctic_admin/base";
 @import "font-awesome";
+
+li.just_datetime_picker input {
+  display: inline;
+}

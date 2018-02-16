@@ -10,8 +10,8 @@ ActiveAdmin.register Project do
     f.inputs do
       f.input :name
       f.input :description
-      f.input :begin_date
-      f.input :end_date
+      f.input :begin_date, as: :just_datetime_picker
+      f.input :end_date, as: :just_datetime_picker
       f.input :project_group
       f.input :active
     end
