@@ -6,6 +6,10 @@ ActiveAdmin.register User do
     link_to 'Skills', admin_user_user_skills_path(resource)
   end
 
+  action_item :admin_user_holidays, only: %i[show edit] do
+    link_to 'Holidays', admin_user_holidays_path(resource)
+  end
+
   show do
     h3 user.name
     panel "Details" do
@@ -33,6 +37,21 @@ ActiveAdmin.register User do
           end
         end
     end
+    panel "Holidays" do
+      table do
+        th do
+          td 'Begin date'
+          td 'End date'
+        end
+        user.holidays.each do |holiday|
+          tr do
+            td
+            td holiday.begin_date
+            td holiday.end_date
+          end                
+        end
+      end
+  end
   end
 
   index do
@@ -42,7 +61,10 @@ ActiveAdmin.register User do
     column :email
     column :team
     column :applicable
-    actions
+    actions do |user|
+      link_to('Skills', admin_user_user_skills_path(user), class: 'member_link')+
+      link_to('Holidays', admin_user_holidays_path(user), class: 'member_link')
+    end
   end
 
   filter :email

@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
   menu priority: 3
-  permit_params :name, :description, :begin_date, :end_date, :project_group_id, :active
+  permit_params :name, :description, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute, :project_group_id, :active
 
   action_item :project_users, only: %i[show edit] do
     link_to 'Project Users', admin_project_project_users_path(resource)

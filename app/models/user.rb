@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :project_users
   has_many :user_skills
+  has_many :holidays
   belongs_to :team
-
 
   scope :applicable, -> { where(applicable: true) }
   scope :not_applicable, -> { where(applicable: false) }  

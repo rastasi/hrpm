@@ -7,3 +7,28 @@
 li.just_datetime_picker input {
   display: inline;
 }
+
+.simple-calendar {
+  .list {
+    .entry {
+      padding: 2px;
+      border-radius: 4px;
+      margin: 2px;
+    }
+  }
+  .reservations {
+    .reservation {
+      background: orange;
+    }
+  }
+  .projects {
+    .projects {
+      background: violet;
+    }
+  }
+  .holidays {
+    .holiday {
+      background: lightgreen;
+    }
+  }
+}
