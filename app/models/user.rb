@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :user_skills
   belongs_to :team
 
+
+  scope :applicable, -> { where(applicable: true) }
+  scope :not_applicable, -> { where(applicable: false) }  
+
   def name
     [self.first_name, self.last_name].join(' ')
   end

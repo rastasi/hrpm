@@ -42,7 +42,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel 'Free users' do
           table do
-            User.free_today.each do |user|
+            User.applicable.free_today.each do |user|
               tr do
                 td user.name                                                
               end

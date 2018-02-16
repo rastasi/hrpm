@@ -1,5 +1,6 @@
 ActiveAdmin.register UserSkill do
   permit_params :skill_id, :user_id, :level
+  actions :new, :create, :edit, :update, :delete, :index  
   belongs_to :user
 
   index do

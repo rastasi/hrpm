@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   menu priority: 4
-  permit_params :email, :password, :password_confirmation, :first_name, :last_name, :team_id
+  permit_params :email, :password, :password_confirmation, :first_name, :last_name, :team_id, :applicable
 
   action_item :admin_user_user_skills, only: %i[show edit] do
     link_to 'Skills', admin_user_user_skills_path(resource)
@@ -13,6 +13,7 @@ ActiveAdmin.register User do
         row :email
         row :last_sign_in_at
         row :team
+        row :applicable
       end
     end
     panel "Skills" do
@@ -40,6 +41,7 @@ ActiveAdmin.register User do
     column :name    
     column :email
     column :team
+    column :applicable
     actions
   end
 
@@ -53,11 +55,20 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :email
-      f.input :password
-      f.input :password_confirmation
+      f.input :password, required: false
+      f.input :password_confirmation, required: false
       f.input :team
+      f.input :applicable
     end
     f.actions
+  end
+
+
+  controller do
+    before_action :remove_passowrd_if_empty, only: :update
+    def remove_passowrd_if_empty
+      %w(password password_confirmation).each { |param| params[:user].delete(param) } if params[:user] && params[:user][:password].blank?
+    end
   end
 
 end

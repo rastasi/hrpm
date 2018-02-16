@@ -1,10 +1,10 @@
 default: &default
   adapter: mysql2
-  username: c21_hrpm
-  password: bnx9w@NFFW
-  database: c21_hrpm
+  username: root
+  password: 
 
 development:
+  database: hrpm_development
   <<: *default
 
 production:

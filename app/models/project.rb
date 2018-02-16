@@ -6,4 +6,9 @@ class Project < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :archived, -> { where(active: false) }  
+
+  validates :name, uniqueness: true, presence: true
+  validates :project_group, presence: true
+  validates :begin_date, presence: true
+  validates :end_date, presence: true    
 end

@@ -6,6 +6,18 @@ ActiveAdmin.register Project do
     link_to 'Project Users', admin_project_project_users_path(resource)
   end
 
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :description
+      f.input :begin_date, as: :date_time_picker
+      f.input :end_date, as: :date_time_picker
+      f.input :project_group
+      f.input :active
+    end
+    f.actions
+  end
+
   show do
     h3 project.name
     panel "Details" do
@@ -20,6 +32,7 @@ ActiveAdmin.register Project do
     panel "Users" do
       project.project_users.each do |project_user|
         h4 project_user.user.name
+        h5 'Skills'
         table do
           project_user.project_user_skills.each do |project_user_skill|
             tr do
@@ -27,6 +40,16 @@ ActiveAdmin.register Project do
               td project_user_skill.user_skill.level
               td project_user_skill.user_skill.skill.skill_group.name              
             end                
+          end
+        end
+        h5 'Reservations'
+        table do
+          project_user.project_user_reservations.each do |project_user_reservation|
+            tr do
+              td project_user_reservation.project_user.user.name
+              td project_user_reservation.begin_date
+              td project_user_reservation.end_date
+            end
           end
         end
       end
@@ -40,6 +63,8 @@ ActiveAdmin.register Project do
     column :end_date
     column :active
     column :project_group
-    actions
+    actions do |project|
+      link_to 'Users', admin_project_project_users_path(project.id), class: 'member_link'
+    end
   end
 end

@@ -1,6 +1,7 @@
 ActiveAdmin.register Skill do
   menu priority: 5
   permit_params :name, :skill_group_id
+  actions :new, :create, :edit, :update, :delete, :index  
 
   index do
     selectable_column
