@@ -12,6 +12,6 @@ class Project < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
   validates :project_group, presence: true
-  validates :begin_date, presence: true
-  validates :end_date, presence: true    
+  #validates :begin_date, presence: true
+  #validates :end_date, presence: true    
 end
