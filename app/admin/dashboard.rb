@@ -57,8 +57,8 @@ ActiveAdmin.register_page "Dashboard" do
         Project.active.each do |project|
           tr do
             td project.name
-            td l project.begin_date
-            td l project.end_date                                                
+            td project.begin_date ? l(project.begin_date) : ''
+            td project.end_date ? l(project.end_date) : ''                   
           end
         end  
       end            
