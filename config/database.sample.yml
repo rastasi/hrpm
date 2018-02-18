@@ -1,0 +1,11 @@
+default: &default
+  adapter: mysql2
+  username:
+  password:
+
+development:
+  database: hrpm_development
+  <<: *default
+
+production:
+  <<: *default
