@@ -31,8 +31,8 @@ ActiveAdmin.register_page "Dashboard" do
               tr do
                 td project_user_reservation.project_user.project.name
                 td project_user_reservation.project_user.user.name
-                td l(project_user_reservation.begin_date, format: '%Y-%m-%d')
-                td l(project_user_reservation.end_date, format: '%Y-%m-%d')
+                td project_user_reservation.begin_date ? l(project_user_reservation.begin_date, format: '%Y-%m-%d') : ''
+                td project_user_reservation.end_date ? l(project_user_reservation.end_date, format: '%Y-%m-%d') : ''
               end
             end  
           end            
