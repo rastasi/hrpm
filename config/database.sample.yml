@@ -1,7 +1,7 @@
 default: &default
   adapter: mysql2
-  username: root
-  password: 
+  username:
+  password:
 
 development:
   database: hrpm_development

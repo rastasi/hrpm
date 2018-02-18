@@ -31,8 +31,8 @@ ActiveAdmin.register_page "Dashboard" do
               tr do
                 td project_user_reservation.project_user.project.name
                 td project_user_reservation.project_user.user.name
-                td project_user_reservation.begin_date
-                td project_user_reservation.end_date                                                
+                td l(project_user_reservation.begin_date, format: '%Y-%m-%d')
+                td l(project_user_reservation.end_date, format: '%Y-%m-%d')
               end
             end  
           end            
@@ -57,8 +57,8 @@ ActiveAdmin.register_page "Dashboard" do
         Project.active.each do |project|
           tr do
             td project.name
-            td project.begin_date
-            td project.end_date                                                
+            td l project.begin_date
+            td l project.end_date                                                
           end
         end  
       end            
