@@ -29,26 +29,32 @@ ActiveAdmin.register Project do
         row :project_group
       end
     end
-    panel "Users" do
-      project.project_users.each do |project_user|
-        h4 project_user.user.name
-        h5 'Skills'
-        table do
-          project_user.project_user_skills.each do |project_user_skill|
-            tr do
-              td project_user_skill.user_skill.skill.name
-              td project_user_skill.user_skill.level
-              td project_user_skill.user_skill.skill.skill_group.name              
-            end                
+    if project.project_users.any?
+      panel "Users" do
+        project.project_users.each do |project_user|
+          h4 project_user.user.name
+          if project_user.project_user_skills.any?
+            h5 'Skills'
+            table do
+              project_user.project_user_skills.each do |project_user_skill|
+                tr do
+                  td project_user_skill.user_skill.skill.name
+                  td project_user_skill.user_skill.level
+                  td project_user_skill.user_skill.skill.skill_group.name              
+                end                
+              end
+            end
           end
-        end
-        h5 'Reservations'
-        table do
-          project_user.project_user_reservations.each do |project_user_reservation|
-            tr do
-              td project_user_reservation.project_user.user.name
-              td project_user_reservation.begin_date
-              td project_user_reservation.end_date
+          if project_user.project_user_reservations.any?
+            h5 'Reservations'
+            table do
+              project_user.project_user_reservations.each do |project_user_reservation|
+                tr do
+                  td project_user_reservation.project_user.user.name
+                  td project_user_reservation.begin_date
+                  td project_user_reservation.end_date
+                end
+              end
             end
           end
         end
