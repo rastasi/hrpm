@@ -20,38 +20,44 @@ ActiveAdmin.register User do
         row :applicable
       end
     end
-    panel "Skills" do
+
+    if user.user_skills.any?
+      panel "Skills" do
+          table do
+            th do
+              td 'Name'
+              td 'Level'
+              td 'Group'
+            end
+            user.user_skills.each do |user_skill|
+              tr do
+                td
+                td user_skill.skill.name
+                td user_skill.level
+                td user_skill.skill.skill_group.name
+              end                
+            end
+          end
+      end
+    end
+
+    if user.holydays.any?
+      panel "Holidays" do
         table do
           th do
-            td 'Name'
-            td 'Level'
-            td 'Group'
+            td 'Begin date'
+            td 'End date'
           end
-          user.user_skills.each do |user_skill|
+          user.holidays.each do |holiday|
             tr do
               td
-              td user_skill.skill.name
-              td user_skill.level
-              td user_skill.skill.skill_group.name
+              td holiday.begin_date
+              td holiday.end_date
             end                
           end
         end
-    end
-    panel "Holidays" do
-      table do
-        th do
-          td 'Begin date'
-          td 'End date'
-        end
-        user.holidays.each do |holiday|
-          tr do
-            td
-            td holiday.begin_date
-            td holiday.end_date
-          end                
-        end
       end
-  end
+    end
   end
 
   index do
