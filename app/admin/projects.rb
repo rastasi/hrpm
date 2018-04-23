@@ -85,8 +85,12 @@ ActiveAdmin.register Project do
   index do
     selectable_column
     column :name
-    column :begin_date
-    column :end_date
+    column :begin_date do |object|
+      l(object.begin_date)
+    end
+    column :end_date do |object|
+      l(object.end_date)
+    end
     column :active
     column :project_group
     actions do |project|
