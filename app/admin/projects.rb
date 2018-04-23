@@ -24,8 +24,12 @@ ActiveAdmin.register Project do
       attributes_table_for project do
         row :name
         row :description
-        row :begin_date
-        row :end_date
+        row :begin_date do
+          l(project.begin_date)
+        end
+        row :end_date do
+          l(project.end_date)
+        end
         row :project_group
       end
     end
@@ -66,8 +70,8 @@ ActiveAdmin.register Project do
                 project_user.project_user_reservations.each do |project_user_reservation|
                   tr do
                     td
-                    td project_user_reservation.begin_date
-                    td project_user_reservation.end_date
+                    td l(project_user_reservation.begin_date)
+                    td l(project_user_reservation.end_date)
                   end
                 end
               end

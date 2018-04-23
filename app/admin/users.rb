@@ -15,7 +15,9 @@ ActiveAdmin.register User do
     panel "Details" do
       attributes_table_for user do
         row :email
-        row :last_sign_in_at
+        row :last_sign_in_at do
+          l(user.last_sign_in_at)
+        end
         row :team
         row :applicable
       end
@@ -24,18 +26,22 @@ ActiveAdmin.register User do
     if user.user_skills.any?
       panel "Skills" do
           table do
-            th do
-              td 'Name'
-              td 'Level'
-              td 'Group'
+            thead do
+              th do
+                td 'Name'
+                td 'Level'
+                td 'Group'
+              end
             end
-            user.user_skills.each do |user_skill|
-              tr do
-                td
-                td user_skill.skill.name
-                td user_skill.level
-                td user_skill.skill.skill_group.name
-              end                
+            tbody do
+              user.user_skills.each do |user_skill|
+                tr do
+                  td
+                  td user_skill.skill.name
+                  td user_skill.level
+                  td user_skill.skill.skill_group.name
+                end                
+              end
             end
           end
       end
@@ -44,16 +50,20 @@ ActiveAdmin.register User do
     if user.holidays.any?
       panel "Holidays" do
         table do
-          th do
-            td 'Begin date'
-            td 'End date'
+          thead do
+            th do
+              td 'Begin date'
+              td 'End date'
+            end
           end
-          user.holidays.each do |holiday|
-            tr do
-              td
-              td holiday.begin_date
-              td holiday.end_date
-            end                
+          tbody do
+            user.holidays.each do |holiday|
+              tr do
+                td
+                td l(holiday.begin_date)
+                td l(holiday.end_date)
+              end                
+            end
           end
         end
       end

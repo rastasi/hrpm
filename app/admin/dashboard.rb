@@ -41,8 +41,8 @@ ActiveAdmin.register_page "Dashboard" do
                   td
                   td link_to project_user_reservation.project_user.project.name, admin_project_path(project_user_reservation.project_user.project)
                   td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
-                  td project_user_reservation.begin_date ? l(project_user_reservation.begin_date, format: '%Y-%m-%d') : ''
-                  td project_user_reservation.end_date ? l(project_user_reservation.end_date, format: '%Y-%m-%d') : ''
+                  td l(project_user_reservation.begin_date)
+                  td l(project_user_reservation.end_date)
                 end
               end
             end
@@ -64,7 +64,7 @@ ActiveAdmin.register_page "Dashboard" do
                 tr do
                   td
                   td link_to user.name, admin_user_path(user)
-                  td user.free_until
+                  td l(user.free_until)
                 end
               end  
             end
@@ -87,8 +87,8 @@ ActiveAdmin.register_page "Dashboard" do
             tr do
               td
               td link_to project.name, admin_project_path(project)
-              td project.begin_date ? l(project.begin_date) : ''
-              td project.end_date ? l(project.end_date) : ''                   
+              td l(project.begin_date)
+              td l(project.end_date)                   
             end
           end
         end
