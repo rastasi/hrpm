@@ -14,4 +14,11 @@ class Project < ApplicationRecord
   validates :project_group, presence: true
   #validates :begin_date, presence: true
   #validates :end_date, presence: true    
+  after_save :update_full_time_interval
+
+  def update_full_time_interval
+    self.project_users.each do |project_user|
+      project_user.update_full_time_interval
+    end
+  end
 end

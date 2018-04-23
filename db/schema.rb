@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216223010) do
+ActiveRecord::Schema.define(version: 20180423205852) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -62,13 +62,14 @@ ActiveRecord::Schema.define(version: 20180216223010) do
     t.string "job"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "full_time_interval", default: false
   end
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
-    t.date "begin_date"
-    t.date "end_date"
+    t.datetime "begin_date"
+    t.datetime "end_date"
     t.integer "project_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

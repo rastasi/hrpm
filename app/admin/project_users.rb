@@ -1,5 +1,5 @@
 ActiveAdmin.register ProjectUser do
-  permit_params :project_id, :user_id
+  permit_params :project_id, :user_id, :full_time_interval
   actions :new, :create, :edit, :update, :destroy, :index    
   belongs_to :project
 
