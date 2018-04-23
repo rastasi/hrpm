@@ -32,7 +32,7 @@ ActiveAdmin.register Project do
     if project.project_users.any?
       panel "Users" do
         project.project_users.each do |project_user|
-          h4 link_to project_user.user.name, project_user.user
+          h4 link_to project_user.user.name, admin_user_path(project_user.user)
           if project_user.project_user_skills.any?
             h5 'Skills'
             table do
@@ -50,7 +50,7 @@ ActiveAdmin.register Project do
             table do
               project_user.project_user_reservations.each do |project_user_reservation|
                 tr do
-                  td link_to project_user_reservation.project_user.user.name, project_user_reservation.project_user.user
+                  td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
                   td project_user_reservation.begin_date
                   td project_user_reservation.end_date
                 end
