@@ -8,6 +8,6 @@ class ProjectUser < ApplicationRecord
   validates :project, presence: true
   
   def name
-    [self.project.name, self.user.name].join(' - ')
+    [self.project.try(:name), self.user.try(:name)].join(' - ')
   end
 end
