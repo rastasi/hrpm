@@ -41,7 +41,7 @@ ActiveAdmin.register User do
       end
     end
 
-    if user.holydays.any?
+    if user.holidays.any?
       panel "Holidays" do
         table do
           th do
