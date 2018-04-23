@@ -36,8 +36,16 @@ ActiveAdmin.register Project do
           if project_user.project_user_skills.any?
             h5 'Skills'
             table do
+              thead do
+                th do
+                  td 'Name'
+                  td 'Level'
+                  td 'Group'
+                end
+              end
               project_user.project_user_skills.each do |project_user_skill|
                 tr do
+                  td
                   td project_user_skill.user_skill.skill.name
                   td project_user_skill.user_skill.level
                   td project_user_skill.user_skill.skill.skill_group.name              
@@ -48,11 +56,19 @@ ActiveAdmin.register Project do
           if project_user.project_user_reservations.any?
             h5 'Reservations'
             table do
-              project_user.project_user_reservations.each do |project_user_reservation|
-                tr do
-                  td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
-                  td project_user_reservation.begin_date
-                  td project_user_reservation.end_date
+              thead do
+                th do
+                  td 'Begin date'
+                  td 'End date'
+                end
+              end
+              tbody do
+                project_user.project_user_reservations.each do |project_user_reservation|
+                  tr do
+                    td
+                    td project_user_reservation.begin_date
+                    td project_user_reservation.end_date
+                  end
                 end
               end
             end
