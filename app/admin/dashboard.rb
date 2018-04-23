@@ -6,19 +6,19 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel 'Projects count' do
-          Project.count
+          link_to Project.count, admin_projects_path
         end
       end
 
       column do
         panel 'Users count' do
-          User.count
+          link_to User.count, admin_users_path
         end
       end
 
       column do
         panel 'Skills count' do
-          Skill.count
+          link_to Skill.count, admin_skills_path
         end
       end
     end
@@ -29,8 +29,8 @@ ActiveAdmin.register_page "Dashboard" do
           table do
             ProjectUserReservation.current.each do |project_user_reservation|
               tr do
-                td project_user_reservation.project_user.project.name
-                td project_user_reservation.project_user.user.name
+                td link_to project_user_reservation.project_user.project.name, admin_project_path(project_user_reservation.project_user.project)
+                td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
                 td project_user_reservation.begin_date ? l(project_user_reservation.begin_date, format: '%Y-%m-%d') : ''
                 td project_user_reservation.end_date ? l(project_user_reservation.end_date, format: '%Y-%m-%d') : ''
               end
@@ -44,7 +44,7 @@ ActiveAdmin.register_page "Dashboard" do
           table do
             User.applicable.free_today.each do |user|
               tr do
-                td user.name                                                
+                td link_to user.name, admin_user_path(user)
               end
             end  
           end            
@@ -56,7 +56,7 @@ ActiveAdmin.register_page "Dashboard" do
       table do
         Project.active.each do |project|
           tr do
-            td project.name
+            td link_to project.name, admin_project_path(project)
             td project.begin_date ? l(project.begin_date) : ''
             td project.end_date ? l(project.end_date) : ''                   
           end
