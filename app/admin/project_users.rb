@@ -1,6 +1,6 @@
 ActiveAdmin.register ProjectUser do
   permit_params :project_id, :user_id
-  actions :new, :create, :edit, :update, :delete, :index    
+  actions :new, :create, :edit, :update, :destroy, :index    
   belongs_to :project
 
   action_item :project_user_skills, only: %i[show edit] do

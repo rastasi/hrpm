@@ -1,6 +1,6 @@
 ActiveAdmin.register Holiday do
   permit_params :user_id, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute
-  actions :new, :create, :edit, :update, :delete, :index    
+  actions :new, :create, :edit, :update, :destroy, :index    
   belongs_to :user
 
   form do |f|
