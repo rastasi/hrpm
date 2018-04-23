@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def self.free_today
     free_on_date(Date.today)
   end
+
+  def free_until
+    ProjectUserReservation.joins(:project_user).where('project_users.user_id = ? and project_user_reservations.begin_date > ?', self.id, Date.today).first
+  end
 end

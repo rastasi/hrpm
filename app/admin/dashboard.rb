@@ -27,14 +27,25 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel 'Reservated users' do
           table do
-            ProjectUserReservation.current.each do |project_user_reservation|
-              tr do
-                td link_to project_user_reservation.project_user.project.name, admin_project_path(project_user_reservation.project_user.project)
-                td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
-                td project_user_reservation.begin_date ? l(project_user_reservation.begin_date, format: '%Y-%m-%d') : ''
-                td project_user_reservation.end_date ? l(project_user_reservation.end_date, format: '%Y-%m-%d') : ''
+            thead do
+              th do
+                td 'Project'
+                td 'Name'
+                td 'Begin date'
+                td 'End date'              
               end
-            end  
+            end
+            tbody do
+              ProjectUserReservation.current.each do |project_user_reservation|
+                tr do
+                  td
+                  td link_to project_user_reservation.project_user.project.name, admin_project_path(project_user_reservation.project_user.project)
+                  td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
+                  td project_user_reservation.begin_date ? l(project_user_reservation.begin_date, format: '%Y-%m-%d') : ''
+                  td project_user_reservation.end_date ? l(project_user_reservation.end_date, format: '%Y-%m-%d') : ''
+                end
+              end
+            end
           end            
         end
       end
@@ -42,25 +53,45 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel 'Free users' do
           table do
-            User.applicable.free_today.each do |user|
-              tr do
-                td link_to user.name, admin_user_path(user)
+            thead do
+              th do
+                td 'Name'
+                td 'Free until'
               end
-            end  
-          end            
+            end
+            tbody do
+              User.applicable.free_today.each do |user|
+                tr do
+                  td
+                  td link_to user.name, admin_user_path(user)
+                  td user.free_until
+                end
+              end  
+            end
+          end
         end
       end
     end
 
     panel 'Active projects' do
       table do
-        Project.active.each do |project|
-          tr do
-            td link_to project.name, admin_project_path(project)
-            td project.begin_date ? l(project.begin_date) : ''
-            td project.end_date ? l(project.end_date) : ''                   
+        thead do
+          th do
+            td 'Name'
+            td 'Begin date'
+            td 'End date'
           end
-        end  
+        end
+        tbody do
+          Project.active.each do |project|
+            tr do
+              td
+              td link_to project.name, admin_project_path(project)
+              td project.begin_date ? l(project.begin_date) : ''
+              td project.end_date ? l(project.end_date) : ''                   
+            end
+          end
+        end
       end            
     end
     
