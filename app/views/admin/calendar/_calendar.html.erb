@@ -1,5 +1,6 @@
 <%= month_calendar do |date| %>
   <%= date.day %><br/>
+  <div class="content" style="max-height: 150px; overflow-y: scroll">
   <div class="reservations list">
     <% reservations_to_date(date).each do |reservation| %>
       <div class="reservation entry" title="<%=reservation.project_user.user.name %> - <%=reservation.project_user.project.name %>">
@@ -7,7 +8,7 @@
       </div>
     <% end %>
   </div>
-  <div class="projects list">
+  <div class="projects list"">
     <% projects_to_date(date).each do |project| %>
       <div class="project entry">
         <%=project.name %>
@@ -20,5 +21,6 @@
         <%=holiday.user.name %>
       </div>
     <% end %>
+  </div>
   </div>
 <% end %>
