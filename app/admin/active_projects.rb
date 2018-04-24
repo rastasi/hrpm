@@ -19,7 +19,7 @@ ActiveAdmin.register_page "ActiveProjects" do
                   if project_user.user
                     link_to project_user.name, admin_user_path(project_user.user)
                   else
-                    project_user.name
+                    h3 project_user.user.name
                   end
                 end
               end
@@ -27,7 +27,7 @@ ActiveAdmin.register_page "ActiveProjects" do
                 tr do
                   td 
                   td do
-                    h3 'Reservations'
+                    h4 'Reservations'
                     table do
                       thead do
                         th do
@@ -50,7 +50,7 @@ ActiveAdmin.register_page "ActiveProjects" do
                 tr do
                   td 
                   td do
-                    h3 'Skills'
+                    h4 'Skills'
                     table do
                       thead do
                         th do
