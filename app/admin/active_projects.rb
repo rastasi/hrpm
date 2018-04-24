@@ -15,7 +15,13 @@ ActiveAdmin.register_page "ActiveProjects" do
             project.project_users.each do |project_user|
               tr do
                 td
-                td link_to project_user.name, admin_user_path(project_user.user)
+                td do
+                  if project_user.user
+                    link_to project_user.name, admin_user_path(project_user.user)
+                  else
+                    project_user.name
+                  end
+                end
               end
               if project_user.project_user_reservations.present?
                 tr do
