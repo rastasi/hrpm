@@ -11,13 +11,7 @@ ActiveAdmin.register_page "ActiveProjects" do
               tr do
                 td
                 td do
-                  
-                  if project_user.user
-                    h3 link_to project_user.user.name, admin_user_path(project_user.user)
-                  else
-                    h3 project_user.name
-                  end
-
+                  h3 link_to project_user.user.name, admin_user_path(project_user.user)
                   if project_user.project_user_reservations.present?
                     h4 'Reservations'
                     table do
