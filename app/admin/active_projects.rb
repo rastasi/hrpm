@@ -6,27 +6,19 @@ ActiveAdmin.register_page "ActiveProjects" do
     Project.active.each do |project|
       panel "#{project.name} (#{l(project.begin_date)} - #{l(project.end_date)})" do
         table do
-          thead do
-            th do
-              td 'Name'
-            end
-          end
           tbody do
             project.project_users.each do |project_user|
               tr do
                 td
                 td do
+                  
                   if project_user.user
-                    link_to project_user.name, admin_user_path(project_user.user)
+                    h3 link_to project_user.user.name, admin_user_path(project_user.user)
                   else
-                    h3 project_user.user.name
+                    h3 project_user.name
                   end
-                end
-              end
-              if project_user.project_user_reservations.present?
-                tr do
-                  td 
-                  td do
+
+                  if project_user.project_user_reservations.present?
                     h4 'Reservations'
                     table do
                       thead do
@@ -44,12 +36,8 @@ ActiveAdmin.register_page "ActiveProjects" do
                       end
                     end
                   end
-                end
-              end
-              if project_user.project_user_skills.present?
-                tr do
-                  td 
-                  td do
+
+                  if project_user.project_user_skills.present?
                     h4 'Skills'
                     table do
                       thead do
@@ -69,11 +57,12 @@ ActiveAdmin.register_page "ActiveProjects" do
                       end
                     end
                   end
+
                 end
               end
             end
           end
-        end            
+        end
       end
     end
   end # content
