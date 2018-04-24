@@ -22,7 +22,7 @@ class User < ApplicationRecord
       project_user_reservation.project_user.user.id
     end
     holiday_user_ids = Holiday.on_day(date).map do |holiday| 
-      holyday.user.id
+      holiday.user.id
     end
     User.where.not(id: (reservated_user_ids+holiday_user_ids).uniq)
   end
