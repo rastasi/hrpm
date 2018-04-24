@@ -18,10 +18,13 @@ class User < ApplicationRecord
   end
 
   def self.free_on_date(date)
-    reservated_ids = ProjectUserReservation.on_day(date).map do |project_user_reservation|
+    reservated_user_ids = ProjectUserReservation.on_day(date).map do |project_user_reservation|
       project_user_reservation.project_user.user.id
     end
-    User.where.not(id: reservated_ids)
+    holiday_user_ids = Holiday.on_day(date).map do |holiday| 
+      holyday.user.id
+    end
+    User.where.not(id: (reservated_user_ids+holiday_user_ids).uniq)
   end
 
   def self.free_today
