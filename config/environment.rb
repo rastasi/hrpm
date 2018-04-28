@@ -6,6 +6,10 @@ Rails.application.initialize!
 
 module ApplicationHelper
   def l(object, options = {})
-    super(object, options) if object
+    if object && object.class.in?(['Time', 'Date', 'DateTime'])
+      super(object, options) 
+    else
+      object
+    end
   end
 end

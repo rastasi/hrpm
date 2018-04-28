@@ -32,6 +32,6 @@ class User < ApplicationRecord
   end
 
   def free_until
-    ProjectUserReservation.joins(:project_user).where('project_users.user_id = ? and project_user_reservations.begin_date > ?', self.id, Date.today).first
+    ProjectUserReservation.joins(:project_user).where('project_users.user_id = ? and project_user_reservations.begin_date > ?', self.id, Date.today).first.try :end_date
   end
 end
