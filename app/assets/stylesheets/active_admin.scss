@@ -45,10 +45,13 @@ li.just_datetime_picker input {
     }
   }
   td.odd {
-    background: #afb7bd;
+    background: #e6e6e6;
   }
   td.even {
-    background: #ccd8e0;
+    background: #ececec;
+  }
+  td.names {
+    background: white;
   }
   td.current {
     background: #64ffa5;

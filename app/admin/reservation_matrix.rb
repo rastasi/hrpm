@@ -21,8 +21,8 @@ ActiveAdmin.register_page "ReservationMatrix" do
     table do
       thead do
         tr do
-          td
-          td do
+          td class: 'names'
+          td class: 'names' do
             'Name'
           end
           date_interval.each_with_index do |date, index|
@@ -35,8 +35,8 @@ ActiveAdmin.register_page "ReservationMatrix" do
       tbody do
         User.applicable.each do |user|
           tr do
-            td
-            td do
+            td class: 'names'
+            td class: 'names' do
               user.name
             end
             date_interval.each_with_index do |date, index|
