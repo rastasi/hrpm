@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include OnDay
 
+  default_scope { order(last_name: :asc) }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
@@ -36,6 +38,6 @@ class User < ApplicationRecord
   end
 
   def projects_by_date(begin_date, end_date)
-    ProjectUserReservation.joins(:project_user => :user).where('users.id = ? and begin_date >= ? and end_date <= ?', self.id, begin_date, end_date).map { |pur| pur.project_user.project.name }
+    ProjectUserReservation.joins(:project_user => :user).where('users.id = ? and begin_date <= ? and end_date >= ?', self.id, begin_date, end_date).map { |pur| pur.project_user.project.try :name }
   end
 end
