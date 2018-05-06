@@ -10,6 +10,7 @@ def td_classes(date, index)
   klasses = []
   klasses.push 'current' if current_week?(date)
   klasses.push(index % 2 == 0 ? 'odd' : 'even')
+  klasses.push('second') if index == 0
   klasses.join(' ')
 end
 
@@ -22,9 +23,7 @@ ActiveAdmin.register_page "ReservationMatrix" do
       thead do
         tr do
           td class: 'names'
-          td class: 'names' do
-            'Name'
-          end
+          td class: 'names'
           date_interval.each_with_index do |date, index|
             td class: td_classes(date, index) do
               [date.year, date.strftime("%B"), date.cweek].join('</br>').html_safe

@@ -36,12 +36,20 @@ li.just_datetime_picker input {
 .admin_reservationmatrix #main_content {
   display: block;
   overflow-x: scroll;
+  tr {
+    border-bottom: 1px solid gray;
+  }
   td {
     padding: 10px;
+    height: 50px;    
+  }
+  td:nth-child(1) {
+    padding-left: 120px;
   }
   thead {
     td {
       text-align: center;
+      height: 100px;
     }
   }
   td.odd {
@@ -51,9 +59,14 @@ li.just_datetime_picker input {
     background: #ececec;
   }
   td.names {
-    background: white;
+    background: rgb(255,255,255);
+    position: absolute;
+    display: block;
   }
   td.current {
     background: #64ffa5;
+  }
+  td.second {
+    padding-left: 140px;
   }
 }
