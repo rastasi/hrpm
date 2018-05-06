@@ -36,8 +36,21 @@ li.just_datetime_picker input {
 .admin_reservationmatrix #main_content {
   display: block;
   overflow-x: scroll;
-  td.date_interval {
-    text-align: center;
+  td {
     padding: 10px;
+  }
+  thead {
+    td {
+      text-align: center;
+    }
+  }
+  td.odd {
+    background: #afb7bd;
+  }
+  td.even {
+    background: #ccd8e0;
+  }
+  td.current {
+    background: #64ffa5;
   }
 }
