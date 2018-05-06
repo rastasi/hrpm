@@ -32,3 +32,13 @@ li.just_datetime_picker input {
     }
   }
 }
+
+.admin_reservationmatrix #main_content {
+  display: block;
+  overflow-x: scroll;
+  td.date_interval {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+  }
+}

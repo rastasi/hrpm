@@ -34,4 +34,8 @@ class User < ApplicationRecord
   def free_until
     ProjectUserReservation.joins(:project_user).where('project_users.user_id = ? and project_user_reservations.begin_date > ?', self.id, Date.today).first.try :end_date
   end
+
+  def projects_by_date(begin_date, end_date)
+    ProjectUserReservation.joins(:project_user => :user).where('users.id = ? and begin_date >= ? and end_date <= ?', self.id, begin_date, end_date).map { |pur| pur.project_user.project.name }
+  end
 end
