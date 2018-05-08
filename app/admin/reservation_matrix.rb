@@ -26,7 +26,7 @@ ActiveAdmin.register_page "ReservationMatrix" do
           td class: 'names'
           date_interval.each_with_index do |date, index|
             td class: td_classes(date, index) do
-              [date.year, date.strftime("%B"), date.cweek].join('</br>').html_safe
+              [date.year, date.strftime("%B"), "#{date.try :day} - #{date_interval[index+1].try(:day)}", date.cweek].join('</br>').html_safe
             end
           end
         end
@@ -40,7 +40,7 @@ ActiveAdmin.register_page "ReservationMatrix" do
             end
             date_interval.each_with_index do |date, index|
               td class: td_classes(date, index) do
-                user.projects_by_date(date, date_interval[index+1]).join(',')
+                user.projects_by_date(date, date_interval[index+1]).join('<br/>').html_safe
               end
             end
           end

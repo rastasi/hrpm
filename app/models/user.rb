@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   def self.free_on_date(date)
     reservated_user_ids = ProjectUserReservation.on_day(date).map do |project_user_reservation|
-      project_user_reservation.project_user.user.id
+      project_user_reservation.project_user.user.try :id
     end
     holiday_user_ids = Holiday.on_day(date).map do |holiday| 
       holiday.user.id
@@ -34,10 +34,16 @@ class User < ApplicationRecord
   end
 
   def free_until
-    ProjectUserReservation.joins(:project_user).where('project_users.user_id = ? and project_user_reservations.begin_date > ?', self.id, Date.today).first.try :end_date
+    ProjectUserReservation
+      .joins(:project_user)
+      .where('project_users.user_id = ? and project_user_reservations.begin_date > ?', self.id, Date.today)
+      .first.try :end_date
   end
 
   def projects_by_date(begin_date, end_date)
-    ProjectUserReservation.joins(:project_user => :user).where('users.id = ? and begin_date <= ? and end_date >= ?', self.id, begin_date, end_date).map { |pur| pur.project_user.project.try :name }
+    ProjectUserReservation
+     .joins(:project_user => :user)
+     .where('users.id = ? and ((begin_date <= ? and end_date >= ?) or (begin_date > ? and end_date < ?))', self.id, begin_date, end_date, begin_date, end_date)
+     .map { |project_user_reservation| project_user_reservation.project_user.project.try :name }
   end
 end
