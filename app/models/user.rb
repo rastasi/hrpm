@@ -7,9 +7,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :project_users
-  has_many :user_skills
-  has_many :holidays
+  has_many :project_users, dependent: :destroy
+  has_many :user_skills, dependent: :destroy
+  has_many :holidays, dependent: :destroy
   belongs_to :team
 
   scope :applicable, -> { where(applicable: true) }

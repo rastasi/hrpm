@@ -5,7 +5,7 @@ class Project < ApplicationRecord
   just_define_datetime_picker :end_date
   
   belongs_to :project_group
-  has_many :project_users
+  has_many :project_users, dependent: :destroy
 
   scope :active, -> { where(active: true) }
   scope :archived, -> { where(active: false) }  
