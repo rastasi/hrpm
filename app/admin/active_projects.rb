@@ -4,7 +4,7 @@ ActiveAdmin.register_page "ActiveProjects" do
 
   content title: 'Active Projects' do
     Project.active.each do |project|
-      panel "#{project.name} (#{l(project.begin_date)} - #{l(project.end_date)})" do
+      panel "#{project.name} (#{l(project.begin_date)} - #{l(project.end_date)}) (PM: #{project.project_manager.try :name})" do
         table do
           tbody do
             project.project_users.each do |project_user|

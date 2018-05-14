@@ -80,6 +80,7 @@ ActiveAdmin.register_page "Dashboard" do
             td 'Name'
             td 'Begin date'
             td 'End date'
+            td 'Project manager'
           end
         end
         tbody do
@@ -89,6 +90,7 @@ ActiveAdmin.register_page "Dashboard" do
               td link_to project.name, admin_project_path(project)
               td l(project.begin_date)
               td l(project.end_date)                   
+              td project.project_manager.try :name
             end
           end
         end

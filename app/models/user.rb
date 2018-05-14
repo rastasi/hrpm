@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :project_users, dependent: :destroy
   has_many :user_skills, dependent: :destroy
   has_many :holidays, dependent: :destroy
+  has_many :managed_projects, class_name: 'Project', foreign_key: :project_manager_id
   belongs_to :team
 
   scope :applicable, -> { where(applicable: true) }
