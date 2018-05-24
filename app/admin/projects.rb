@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
   menu priority: 3
-  permit_params :name, :description, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute, :project_group_id, :active
+  permit_params :name, :description, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute, :project_group_id, :active, :pm_url
 
   action_item :project_users, only: %i[show edit] do
     link_to 'Project Users', admin_project_project_users_path(resource)
@@ -10,6 +10,7 @@ ActiveAdmin.register Project do
     f.inputs do
       f.input :name
       f.input :description
+      f.input :pm_url
       f.input :begin_date, as: :just_datetime_picker
       f.input :end_date, as: :just_datetime_picker
       f.input :project_group
@@ -24,6 +25,7 @@ ActiveAdmin.register Project do
       attributes_table_for project do
         row :name
         row :description
+        row :pm_url
         row :begin_date do
           l(project.begin_date)
         end
@@ -93,6 +95,9 @@ ActiveAdmin.register Project do
     end
     column :active
     column :project_group
+    column :pm_url do |object|
+      link_to 'PM URL', object.pm_url
+    end
     actions do |project|
       link_to 'Users', admin_project_project_users_path(project.id), class: 'member_link'
     end

@@ -5,44 +5,24 @@ ActiveAdmin.register_page "Dashboard" do
   content title: proc{ I18n.t("active_admin.dashboard") } do
     columns do
       column do
-        panel 'Projects count' do
-          link_to Project.count, admin_projects_path
-        end
-      end
-
-      column do
-        panel 'Users count' do
-          link_to User.count, admin_users_path
-        end
-      end
-
-      column do
-        panel 'Skills count' do
-          link_to Skill.count, admin_skills_path
-        end
-      end
-    end
-
-    columns do
-      column do
         panel 'Reservated users' do
           table do
             thead do
               th do
-                td 'Project'
                 td 'Name'
                 td 'Begin date'
                 td 'End date'              
+                td 'Project'
               end
             end
             tbody do
               ProjectUserReservation.current.each do |project_user_reservation|
                 tr do
                   td
-                  td link_to project_user_reservation.project_user.project.name, admin_project_path(project_user_reservation.project_user.project)
                   td link_to project_user_reservation.project_user.user.name, admin_user_path(project_user_reservation.project_user.user)
                   td l(project_user_reservation.begin_date)
                   td l(project_user_reservation.end_date)
+                  td link_to project_user_reservation.project_user.project.name, admin_project_path(project_user_reservation.project_user.project)
                 end
               end
             end
