@@ -99,7 +99,7 @@ ActiveAdmin.register Project do
     column :project_manager
     column :project_group
     column :pm_url do |object|
-      link_to 'PM URL', object.pm_url
+      object.pm_url ? link_to('PM URL', object.pm_url) : '' 
     end
     actions do |project|
       link_to 'Users', admin_project_project_users_path(project.id), class: 'member_link'
