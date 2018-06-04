@@ -62,6 +62,7 @@ ActiveAdmin.register_page "Dashboard" do
             td 'End date'
             td 'Project manager'
             td 'PM URL'
+            td 'Status'
           end
         end
         tbody do
@@ -72,7 +73,8 @@ ActiveAdmin.register_page "Dashboard" do
               td l(project.begin_date)
               td l(project.end_date)                   
               td project.project_manager.try :name
-              td project.pm_url ? link_to('PM URL', project.pm_url) : ''              
+              td project.pm_url ? link_to('PM URL', project.pm_url) : ''
+              td project.project_status.try :name           
             end
           end
         end

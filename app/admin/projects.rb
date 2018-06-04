@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
   menu priority: 3
-  permit_params :name, :description, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute, :project_group_id, :active, :project_manager_id, :pm_url
+  permit_params :name, :description, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute, :project_group_id, :active, :project_manager_id, :pm_url, :project_status_id
 
   action_item :project_users, only: %i[show edit] do
     link_to 'Project Users', admin_project_project_users_path(resource)
@@ -14,8 +14,9 @@ ActiveAdmin.register Project do
       f.input :begin_date, as: :just_datetime_picker
       f.input :end_date, as: :just_datetime_picker
       f.input :project_group
-      f.input :active
       f.input :project_manager
+      f.input :project_status
+      f.input :active
     end
     f.actions
   end
@@ -27,6 +28,7 @@ ActiveAdmin.register Project do
         row :name
         row :description
         row :pm_url
+        row :project_status
         row :begin_date do
           l(project.begin_date)
         end
