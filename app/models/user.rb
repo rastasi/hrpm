@@ -25,8 +25,8 @@ class User < ApplicationRecord
       project_user_reservation.project_user.user.try :id
     end
     holiday_user_ids = Holiday.on_day(date).map do |holiday| 
-      holiday.user.id
-    end
+      holiday.user.try :id
+    end.compact
     User.where.not(id: (reservated_user_ids+holiday_user_ids).uniq)
   end
 

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20180604075707) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
-    t.text "body"
+    t.text "body", limit: 16777215
     t.string "resource_type"
     t.bigint "resource_id"
     t.string "author_type"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180604075707) do
 
   create_table "project_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description"
+    t.text "description", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,15 +72,15 @@ ActiveRecord::Schema.define(version: 20180604075707) do
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description"
+    t.text "description", limit: 16777215
     t.datetime "begin_date"
     t.datetime "end_date"
     t.integer "project_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
-    t.string "pm_url"
     t.integer "project_manager_id"
+    t.string "pm_url"
     t.integer "project_status_id"
   end
 
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20180604075707) do
 
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description"
+    t.text "description", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
