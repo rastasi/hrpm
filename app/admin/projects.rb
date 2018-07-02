@@ -1,6 +1,26 @@
 ActiveAdmin.register Project do
+  PRIORITY_COLLECTION = ['Low', 'Medium', 'Hight']
+
   menu priority: 3
-  permit_params :name, :description, :begin_date_date, :begin_date_time_hour, :begin_date_time_minute, :end_date_date, :end_date_time_hour, :end_date_time_minute, :project_group_id, :active, :project_manager_id, :pm_url, :project_status_id
+  permit_params(
+    :name,
+    :description, 
+    :begin_date_date, 
+    :begin_date_time_hour, 
+    :begin_date_time_minute,
+    :end_date_date, 
+    :end_date_time_hour, 
+    :end_date_time_minute, 
+    :project_group_id, 
+    :active, 
+    :project_manager_id, 
+    :pm_url, 
+    :project_status_id,
+    :original_estimation_time,
+    :current_estimation_time,
+    :time_spent,
+    :priority
+  )
 
   action_item :project_users, only: %i[show edit] do
     link_to 'Project Users', admin_project_project_users_path(resource)
@@ -17,6 +37,10 @@ ActiveAdmin.register Project do
       f.input :project_manager
       f.input :project_status
       f.input :active
+      f.input :original_estimation_time
+      f.input :current_estimation_time
+      f.input :time_spent
+      f.input :priority, as: :select, collection: PRIORITY_COLLECTION
     end
     f.actions
   end
@@ -37,6 +61,10 @@ ActiveAdmin.register Project do
         end
         row :project_group
         row :project_manager
+        row :original_estimation_time
+        row :current_estimation_time
+        row :time_spent
+        row :priority
       end
     end
     if project.project_users.any?
@@ -103,6 +131,7 @@ ActiveAdmin.register Project do
     column :pm_url do |object|
       object.pm_url ? link_to('PM URL', object.pm_url) : '' 
     end
+    column :priority
     actions do |project|
       link_to 'Users', admin_project_project_users_path(project.id), class: 'member_link'
     end

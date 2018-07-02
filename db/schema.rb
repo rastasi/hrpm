@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604075707) do
+ActiveRecord::Schema.define(version: 20180702183115) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
-    t.text "body", limit: 16777215
+    t.text "body"
     t.string "resource_type"
     t.bigint "resource_id"
     t.string "author_type"
@@ -34,9 +34,17 @@ ActiveRecord::Schema.define(version: 20180604075707) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "entity_type"
+    t.string "entity_id"
+    t.text "change"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "project_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description", limit: 16777215
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,16 +80,20 @@ ActiveRecord::Schema.define(version: 20180604075707) do
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description", limit: 16777215
+    t.text "description"
     t.datetime "begin_date"
     t.datetime "end_date"
     t.integer "project_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
-    t.integer "project_manager_id"
     t.string "pm_url"
+    t.integer "project_manager_id"
     t.integer "project_status_id"
+    t.integer "original_estimation_time"
+    t.integer "current_estimation_time"
+    t.integer "time_spent"
+    t.string "priority"
   end
 
   create_table "skill_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -99,7 +111,7 @@ ActiveRecord::Schema.define(version: 20180604075707) do
 
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description", limit: 16777215
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
