@@ -1,4 +1,5 @@
 ActiveAdmin.register Log do
+  menu priority: 9999999
   actions :index, :show    
 
   index do

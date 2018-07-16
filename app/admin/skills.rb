@@ -1,5 +1,5 @@
 ActiveAdmin.register Skill do
-  menu priority: 5
+  menu priority: 5, parent: 'Groups'
   permit_params :name, :skill_group_id
   actions :new, :create, :edit, :update, :destroy, :index  
 

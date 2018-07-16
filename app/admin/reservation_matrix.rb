@@ -16,7 +16,7 @@ end
 
 ActiveAdmin.register_page "ReservationMatrix" do
 
-  menu priority: 1, label: 'Reservation Matrix', parent: 'Dashboard'
+  menu priority: 1, label: 'Reservation Matrix', parent: 'Misc'
 
   content title: 'Reservation Matrix' do
     table do

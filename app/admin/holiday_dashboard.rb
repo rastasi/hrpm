@@ -1,8 +1,8 @@
 ActiveAdmin.register_page "HolidayDashboard" do
 
-  menu priority: 1, label: 'Holiday Dashboard', parent: 'Dashboard'
+  menu priority: 1, label: 'Holidays'
 
-  content title: 'Holiday Dashboard' do
+  content title: 'Holidays' do
       table do
         tbody do
           thead do

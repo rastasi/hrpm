@@ -1,6 +1,6 @@
 ActiveAdmin.register_page "Statistics" do
 
-  menu priority: 6, label: 'Statistics'
+  menu priority: 6, label: 'Statistics', parent: 'Misc'
 
   content title: 'Statistics' do
     columns do

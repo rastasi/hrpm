@@ -1,5 +1,5 @@
 ActiveAdmin.register Team do
-  menu parent: 'Misc'
+  menu parent: 'Groups'
   permit_params :name, :description
   actions :new, :create, :edit, :update, :destroy, :index  
   config.filters = false
