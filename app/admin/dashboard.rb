@@ -81,6 +81,7 @@ ActiveAdmin.register_page "Dashboard" do
             td 'Begin date'
             td 'End date'
             td 'Project manager'
+            td 'Members'
           end
         end
         tbody do
@@ -91,6 +92,7 @@ ActiveAdmin.register_page "Dashboard" do
               td l(project.begin_date)
               td l(project.end_date)                   
               td project.project_manager.try :name
+              td project.project_users.map {|project_user| project_user.user.try :name }.join(', ')
             end
           end
         end
