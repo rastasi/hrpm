@@ -23,4 +23,9 @@ class Project < ApplicationRecord
       project_user.update_full_time_interval
     end
   end
+
+  def expired?
+    return false unless self.end_date
+    self.end_date < Date.today
+  end
 end
