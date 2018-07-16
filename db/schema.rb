@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514094859) do
+ActiveRecord::Schema.define(version: 20180702183115) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -34,11 +34,24 @@ ActiveRecord::Schema.define(version: 20180514094859) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "entity_type"
+    t.string "entity_id"
+    t.text "change"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "project_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "project_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "color"
   end
 
   create_table "project_user_reservations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,7 +87,13 @@ ActiveRecord::Schema.define(version: 20180514094859) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.string "pm_url"
     t.integer "project_manager_id"
+    t.integer "project_status_id"
+    t.integer "original_estimation_time"
+    t.integer "current_estimation_time"
+    t.integer "time_spent"
+    t.string "priority"
   end
 
   create_table "skill_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

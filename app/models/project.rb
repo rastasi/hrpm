@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   just_define_datetime_picker :end_date
   
   belongs_to :project_group
+  belongs_to :project_status
   belongs_to :project_manager, class_name: 'User'
   has_many :project_users, dependent: :destroy
 
