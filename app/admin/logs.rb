@@ -6,8 +6,12 @@ ActiveAdmin.register Log do
     selectable_column
     column :entity_type
     column :entity do |object|
-      entity = object.entity_type.constantize.find(object.entity_id)
-      entity.name
+      begin
+        entity = object.entity_type.constantize.find(object.entity_id)
+        entity.name
+      rescue => e
+        'Deleted'
+      end
     end
     column :change do |object|
       out = ''
