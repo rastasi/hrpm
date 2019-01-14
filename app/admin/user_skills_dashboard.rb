@@ -1,6 +1,6 @@
 ActiveAdmin.register_page "UserSkillsDashboard" do
 
-  menu priority: 1, label: 'User Skills', parent: 'Misc'
+  menu priority: 1, label: 'Skill Summary', parent: 'Misc'
 
   content title: 'User Skills' do
       table do
@@ -12,7 +12,7 @@ ActiveAdmin.register_page "UserSkillsDashboard" do
               td 'Opereations'
             end
           end
-          User.all.each do |user|
+          User.applicable.each do |user|
             tr do
               td
               td user.name
