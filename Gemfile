@@ -39,3 +39,6 @@ gem "simple_calendar", "~> 2.0"
 gem 'better_errors'
 gem 'binding_of_caller'
 gem "just-datetime-picker"
+gem "axlsx"
+gem "zip"
+gem "rubyzip"
