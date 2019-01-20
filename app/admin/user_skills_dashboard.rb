@@ -2,6 +2,10 @@ ActiveAdmin.register_page "UserSkillsDashboard" do
 
   menu priority: 1, label: 'Skill Summary', parent: 'Misc'
 
+  action_item :export do
+    link_to "Export", export_user_skills_path
+  end
+
   content title: 'User Skills' do
       table do
         tbody do
