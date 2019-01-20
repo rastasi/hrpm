@@ -12,7 +12,7 @@ ActiveAdmin.register_page "UserSkillsDashboard" do
               td 'Opereations'
             end
           end
-          User.each do |user|
+          User.all.each do |user|
             tr do
               td
               td user.name
