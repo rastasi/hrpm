@@ -7,7 +7,7 @@ class Project < ApplicationRecord
   belongs_to :project_group
   belongs_to :project_status
   belongs_to :project_manager, class_name: 'User'
-  has_many :project_users, dependent: :destroy
+  has_many :sprints
 
   scope :active, -> { where(active: true) }
   scope :archived, -> { where(active: false) }  
@@ -17,12 +17,6 @@ class Project < ApplicationRecord
   #validates :begin_date, presence: true
   #validates :end_date, presence: true    
   after_save :update_full_time_interval
-
-  def update_full_time_interval
-    self.project_users.each do |project_user|
-      project_user.update_full_time_interval
-    end
-  end
 
   def expired?
     return false unless self.end_date

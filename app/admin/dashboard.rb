@@ -25,7 +25,16 @@ ActiveAdmin.register_page "Dashboard" do
                 td l(project.begin_date)
                 td l(project.end_date), style: (project.expired? ? 'color: red' : '')
                 td project.project_manager.try :name
-                td project.project_users.select { |project_user| project_user.user.applicable }.map {|project_user| project_user.user.try :name }.join('<br/>').html_safe
+                td do
+                  members = ['<ul>']
+                  project.sprints.each do |sprint|
+                    members.push "<li style='list-style-type: square;'><strong>#{sprint.name}</strong><ul>"
+                    members.push sprint.sprint_users.select { |sprint_user| sprint_user.user.applicable }.map { |sprint_user| "<li style='list-style-type: circle; margin-left: 10px'>#{sprint_user.user.try(:name)}</li>" }.join('')
+                    members.push '</ul></li>'
+                  end
+                  members.push '</ul>'
+                  members.join('').html_safe
+                end
                 td project.pm_url ? link_to('PM URL', project.pm_url) : ''
                 td project.project_status.try :name
               end

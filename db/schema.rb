@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180702183115) do
+ActiveRecord::Schema.define(version: 20190528081221) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20180702183115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
-    t.string "pm_url"
     t.integer "project_manager_id"
+    t.string "pm_url"
     t.integer "project_status_id"
     t.integer "original_estimation_time"
     t.integer "current_estimation_time"
@@ -105,6 +105,22 @@ ActiveRecord::Schema.define(version: 20180702183115) do
   create_table "skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.integer "skill_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sprint_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "sprint_id"
+    t.integer "user_id"
+    t.integer "percent"
+  end
+
+  create_table "sprints", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "begin_date"
+    t.date "end_date"
+    t.integer "project_id"
+    t.text "required_content"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
