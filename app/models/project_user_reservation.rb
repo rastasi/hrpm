@@ -1,0 +1,2 @@
+class ProjectUserReservation < ApplicationRecord
+end

@@ -1,6 +1,6 @@
 ActiveAdmin.register Sprint do
   belongs_to :project
-  permit_params :begin_date, :end_date, :required_content, :status
+  permit_params :begin_date, :end_date, :full_time_interval, :required_content, :status
   actions :new, :create, :edit, :update, :destroy, :index  
   config.filters = false
   
@@ -9,6 +9,7 @@ ActiveAdmin.register Sprint do
     column :begin_date
     column :end_date
     column :status
+    column :full_time_interval
     actions do |sprint|
       link_to 'Sprint users', admin_sprint_sprint_users_path(sprint.id), class: 'member_link'
     end
@@ -20,6 +21,7 @@ ActiveAdmin.register Sprint do
       f.input :status, as: :select, collection: ['Success', 'Failed']
       f.input :begin_date
       f.input :end_date
+      f.input :full_time_interval
       f.input :required_content
     end
     f.actions

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  include OnDay
 
   default_scope { order(last_name: :asc) }
 
